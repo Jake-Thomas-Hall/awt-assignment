@@ -6,13 +6,15 @@ class Auth
     public string $email = "";
     public string $firstName = "";
     public string $lastName = "";
+    public string $password = "";
     public string $created = "";
+    public string $token = "";
 
-    public function login(string $email, string $password): bool
+    public function login(string $email, string $password): void
     {
         global $connection;
 
-        $userQuery = $connection->prepare("SELECT id, firstName, lastName, email, password, created FROM t_users WHERE email = ?");
+        $userQuery = $connection->prepare("SELECT id, firstName, lastName, email, password, created FROM tbl_users WHERE email = ?");
 
         $userQuery->bind_param("s", $email);
         $userQuery->execute();
@@ -24,17 +26,34 @@ class Auth
             $userQuery->fetch();
 
             if (password_verify($password, $resultPassword)) {
+                // Store user details for later potential use within this Auth class instance
                 $this->id = $resultId;
                 $this->email = $resultEmail;
                 $this->firstName = $resultFirstName;
                 $this->lastName = $resultLastName;
                 $this->created = $resultCreated;
-                return true;
+
+                // Now need to create a persistant login token to return for this user.
+                $tokenInsertQuery = $connection->query("INSERT INTO tbl_authorise (userId) VALUES ($this->id)");
+
+                if ($tokenInsertQuery) {
+                    // If insert of new login token succeeds, return it from method and also set last login of user.
+                    $tokenQuery = $connection->query("SELECT token FROM tbl_authorise WHERE id = $connection->insert_id;");
+
+                    $connection->query("UPDATE tbl_users SET lastLogin=now() WHERE id = $this->id;");
+
+                    $row = $tokenQuery->fetch_assoc();
+
+                    $this->token = $row['token'];
+                }
+                else {
+                    throw new Exception('Login succeeded, but acquiring a persistance token failed. Plese try logging in again.');
+                }
             } else {
-                return false;
+                throw new Exception('Login failed, credentials were not valid.');
             }
         } else {
-            return false;
+            throw new Exception('Login failed, credentials were not valid.');
         }
     }
 
@@ -42,7 +61,7 @@ class Auth
     {
         global $connection;
 
-        $tokenQuery = $connection->prepare("SELECT iduser FROM tbl_authorise WHERE token = ?");
+        $tokenQuery = $connection->prepare("SELECT userId FROM tbl_authorise WHERE token = ?");
 
         $tokenQuery->bind_param("s", $token);
         $tokenQuery->execute();
@@ -58,13 +77,20 @@ class Auth
             $userQuery = $connection->query("SELECT id, firstName, lastName, email, password, created FROM tbl_users WHERE id = {$userID}");
             $row = $userQuery->fetch_assoc();
 
+            // Store login details for later user as part of this auth instance.
             $this->id = $row['id'];
             $this->firstName = $row['firstName'];
             $this->lastName = $row['lastName'];
             $this->email = $row['email'];
             $this->password = $row['password'];
             $this->created = $row['created'];
+
+            // Also update last login date for user (don't need to worry about checking if this succeeded or not)
+            $connection->query("UPDATE tbl_users SET lastLogin=now() WHERE id = $this->id;");
+
             return true;
         }
+
+        return false;
     }
 }
