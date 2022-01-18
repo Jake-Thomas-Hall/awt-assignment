@@ -1,9 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
 
-    # Don't rewrite files or directories
+    # Don't rewrite files or directories or api calls
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_URI} !^/api [NC]
     RewriteRule ^ - [L]
 
     # Rewrite everything else to index.html
