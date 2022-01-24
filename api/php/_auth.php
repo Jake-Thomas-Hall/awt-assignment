@@ -63,9 +63,9 @@ class Auth
         $logoutQuery = $connection->prepare("DELETE FROM tbl_authorise WHERE token = ?");
 
         $logoutQuery->bind_param("s", $token);
-        $logoutQuery->execute();
+        $delete = $logoutQuery->execute();
 
-        if (!empty($logoutQuery->error)) {
+        if (!$delete || $logoutQuery->affected_rows < 1) {
             throw new Exception('Logout failed.');
         }
     }
