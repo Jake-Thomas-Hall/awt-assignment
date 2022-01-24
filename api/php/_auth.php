@@ -57,6 +57,19 @@ class Auth
         }
     }
 
+    public function logout(string $token): void {
+        global $connection;
+
+        $logoutQuery = $connection->prepare("DELETE FROM tbl_authorise WHERE token = ?");
+
+        $logoutQuery->bind_param("s", $token);
+        $logoutQuery->execute();
+
+        if (!empty($logoutQuery->error)) {
+            throw new Exception('Logout failed.');
+        }
+    }
+
     public function authGuard(string $token): bool
     {
         global $connection;

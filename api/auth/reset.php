@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../php/_connect.php';
 require __DIR__ . '/../php/_userManagement.php';
+require __DIR__ . '/../php/_utilities.php';
 
 $userManager = new UserManagement();
 
@@ -9,11 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $userManager->getIdFromName($_POST['email']);
 
         if (!is_null($result)) {
-
+            $userManager->sendResetEmail($result);
         }
 
-        jsonResponse("Login successful", ['token' => $auth->token]);
+        jsonResponse("Password reset email successfully sent");
     } else {
-        jsonErrorResponse(400, 'Login failed; credentials not provided.', null);
+        jsonErrorResponse(400, 'Request reset failed; email not provided.');
     }
 }

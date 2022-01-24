@@ -7,12 +7,8 @@ $auth = new Auth();
 
 $requestHeaders = apache_request_headers();
 
-if (!array_key_exists('Authorization', $requestHeaders)) {
-    jsonErrorResponse(403, 'Login failed, please login again.', null);
-}
-
 // Error out and return 403 if token authentication fails. Front end redirect to login screen in this scenario.
 // If successful, allow continuation without issue.
-if (!$auth->authGuard($requestHeaders['Authorization'])) {
-    jsonErrorResponse(403, 'Login failed, please login again.', null);
+if (!array_key_exists('Authorization', $requestHeaders) || !$auth->authGuard($requestHeaders['Authorization'])) {
+    jsonErrorResponse(403, 'Login failed, please login again.');
 }

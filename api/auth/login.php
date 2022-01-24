@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             jsonResponse("Login successful", ['token' => $auth->token]);
         } catch (Exception $ex) {
-            jsonErrorResponse(403, $ex->getMessage(), null);
+            jsonErrorResponse(403, $ex->getMessage());
         }
     } else {
-        jsonErrorResponse(400, 'Login failed; credentials not provided.', null);
+        jsonErrorResponse(400, 'Login failed; credentials not provided.');
     }
 }
 
@@ -26,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $requestHeaders = apache_request_headers();
 
     if (!array_key_exists('Authorization', $requestHeaders)) {
-        jsonErrorResponse(403, 'Login failed, please login again.', null);
+        jsonErrorResponse(403, 'Login failed, please login again.');
     }
 
     // Error out and return 403 if token authentication fails. If successful, return 200.
     if (!$auth->authGuard($requestHeaders['Authorization'])) {
-        jsonErrorResponse(403, 'Login failed, please login again.', null);
+        jsonErrorResponse(403, 'Login failed, please login again.');
     }
     else {
         jsonResponse("Token authentication passed.", ['authStatus' => true]);
