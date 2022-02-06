@@ -28,20 +28,36 @@ h1, h2, h3, h4, h5, h6, a {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
-.button-white {
-    background-color: hsla(0, 0%, 100%, 0.2);
+.button {
     padding: 6px 20px;
     border-radius: 20px;
     text-decoration: none;
-    color: white;
     transition: 0.1s;
     transition-property: background-color;
     font-weight: bold;
 
-    &:hover {
-        background-color: hsla(0, 0%, 100%, 0.30);
+    &.transparent {
+        background-color: hsla(0, 0%, 100%, 0.2);
+        color: white;
+
+        &:hover {
+            background-color: hsla(0, 0%, 100%, 0.4);
+        }
     }
-} 
+
+    &.white {
+        color: black;
+        background-color: hsl(0, 0%, 100%);
+
+        &:hover {
+            background-color: hsl(0, 0%, 90%);
+        }
+    }
+
+    &.large {
+        font-size: 1.3rem;
+    }
+}
 
 .container {
     max-width: 80%;
@@ -77,6 +93,10 @@ h1, h2, h3, h4, h5, h6, a {
 .text-section-header {
     font-size: 2.5rem;
     font-weight: bold;
+}
+
+.text-centre {
+    text-align: center;
 }
 
 .white {
