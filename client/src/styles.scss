@@ -116,3 +116,20 @@ h1, h2, h3, h4, h5, h6, a {
     object-fit: cover;
 }
 
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-auto-rows: auto;
+    gap: 1rem;
+}
+
+.card {
+    box-shadow: 0 0.2rem 0.8rem rgba(0,0,0,0.2);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.pt-1 {
+    padding-top: 1rem;
+}
+
