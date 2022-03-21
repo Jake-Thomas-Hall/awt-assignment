@@ -18,6 +18,33 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &.dark {
+        ul {  
+            a {
+                color: rgb(0, 0, 0);
+            }
+
+            li:hover {
+                background-color: rgba(0, 0, 0, 0.082);
+            }
+            
+            a:hover {
+                color: rgb(54, 54, 54);
+            }
+        }
+
+        .button {       
+            &.transparent {
+                background-color: hsla(0, 0%, 0%, 0.068);
+                color: rgb(0, 0, 0);
+        
+                &:hover {
+                    background-color: hsla(0, 0%, 0%, 0.185);
+                }
+            }
+        }
+    }
 }
 
 .logo-container {
@@ -42,7 +69,13 @@ ul {
     padding: 0;
 
     li {
-        padding: 10px 20px;
+        padding: 6px 20px;
+        border-radius: 2rem;
+        transition: 0.1s background-color;
+    }
+
+    li:hover {
+        background-color: rgba(255, 255, 255, 0.151);
     }
 
     a {
@@ -53,7 +86,7 @@ ul {
     }
     
     a:hover {
-        color: rgb(201, 201, 201);
+        color: rgb(219, 219, 219);
     }
 }
 

@@ -1,4 +1,24 @@
-<div class="container first">
-    <p>login works!</p>
+<div class="container">
+    <div class="d-flex flex-justify-items-center flex-align-items-center h-100">
+        <div class="card">
+            <div [formGroup]="loginForm" class="login-form">
+                <h2 class="mt-0">Admin sign in</h2>
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" formControlName="email">
+                </div>
+                
+                <div class="input-container">
+                    <div class="d-flex forgot-password">
+                        <label for="password">Password</label>
+                        <a [routerLink]="['/reset']">Forgot your password?</a>
+                    </div>
+                    <input id="password" type="password" formControlName="password">
+                </div>
+                
+                <button type="submit" class="button primary w-100"><span>Continue <i class="bi bi-arrow-right-short"></i></span></button>
+            </div>
+        </div>
+    </div>
 </div>
 
