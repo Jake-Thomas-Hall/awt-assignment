@@ -37,17 +37,24 @@
     <app-carousel></app-carousel>
 </section>
 <section class="container pt-1">
-    <div class="cards-container">
-        <div class="card">
-            <h1>Test card</h1>
-            <p>Some content goes here</p>
+    <div class="grid">
+        <div class="col-6">
+            <div class="card h-100 d-flex flex-direction-column flex-justify-content-between">
+                <h2>About us</h2>
+                <p>Read our origins as a company and our company values.</p>
+                <div class="mt-1">
+                    <a [routerLink]="['/about']" class="button primary large"><span>View <i class="bi bi-arrow-right-short"></i></span></a>
+                </div>
+            </div>
         </div>
-        <div class="card">
-            <h1>Test card</h1>
-            <p>Some content goes here</p>
+        <div class="col-6">
+            <div class="card h-100 d-flex flex-direction-column flex-justify-content-between">
+                <h2>Our services</h2>
+                <p>We provide a variety of services to meet our client's needs; from small to large we have a services plan that should suit.</p>
+                <div class="mt-1">
+                    <a [routerLink]="['/services']" class="button primary large"><span>View <i class="bi bi-arrow-right-short"></i></span></a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-<div style="height: 1800px;">
-
-</div>

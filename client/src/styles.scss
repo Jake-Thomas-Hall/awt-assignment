@@ -99,6 +99,7 @@ a {
     width: 100%;
 }
 
+// Flex helpers
 .d-flex {
     display: flex;
 }
@@ -107,13 +108,26 @@ a {
     align-items: center;
 }
 
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.flex-justify-content-between {
+    justify-content: space-between;
+}
+
 .flex-justify-items-center {
     justify-content: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
 .flex-item-50 {
     width: 50%;
 }
+// Flex helpers end
 
 .text-large {
     font-size: 7rem;
@@ -146,18 +160,47 @@ a {
     object-fit: cover;
 }
 
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    grid-auto-rows: auto;
-    gap: 1rem;
-}
-
 .card {
     box-shadow: 0 0.3rem 0.5rem rgba(0,0,0,0.2);
     border-radius: 0.4rem;
     padding: 2rem 3.5rem;
+
+    h2 {
+        font-size: 2rem;
+    }
 }
+
+// Grid system
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+
+    .col-2 {
+        grid-column: auto/span 2;
+    }
+
+    .col-3 {
+        grid-column: auto/span 3;
+    }
+
+    .col-4 {
+        grid-column: auto/span 4;
+    }
+
+    .col-6 {
+        grid-column: auto/span 6;
+    }
+
+    .col-8 {
+        grid-column: auto/span 8;
+    }
+
+    .col-12 {
+        grid-column: auto/span 8;
+    }
+}
+// Grid system end
 
 // Padding/Margin utilities
 
@@ -165,9 +208,51 @@ a {
     margin-top: 0;
 }
 
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.my-1 {
+    margin: 1rem 0;
+}
+
 .pt-1 {
     padding-top: 1rem;
 }
 
 // Padding/Margin utilities end
+.footer-background-mask-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 
+.footer-background-mask {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: 100% 0;
+    transform: skewY(-3deg);
+    background: #f6f9fc;
+}
+
+.footer-content {
+    padding-top: 6.5rem;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
