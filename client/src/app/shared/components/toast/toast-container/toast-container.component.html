@@ -1,0 +1,3 @@
+<div *ngFor="let toast of toastService.toastMessages$ | async; let i = index" @verticalCollapse @triggerChildAnimation>
+    <app-toast-item (closeItem)="closeToast(i)" [toastMessage]="toast"></app-toast-item>
+</div>

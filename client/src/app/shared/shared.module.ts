@@ -4,21 +4,28 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { BackButtonDirective } from './directives/back-button.directive';
+import { ToastContainerComponent } from './components/toast/toast-container/toast-container.component';
+import { ToastItemComponent } from './components/toast/toast-item/toast-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    BackButtonDirective
+    BackButtonDirective,
+    ToastContainerComponent,
+    ToastItemComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
-    BackButtonDirective
+    BackButtonDirective,
+    ToastContainerComponent
   ]
 })
 export class SharedModule { }

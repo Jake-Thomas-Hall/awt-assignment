@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationService } from 'src/app/services/navigation.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private navigationService: NavigationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastService: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -26,5 +28,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.navigationService.setNavViewPreference(false);
+  }
+
+  login(): void {
+    this.toastService.openToast({ content: 'Login successful', style: 'success' });
   }
 }
