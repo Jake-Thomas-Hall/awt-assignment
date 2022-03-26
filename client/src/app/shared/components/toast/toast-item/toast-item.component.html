@@ -2,7 +2,7 @@
                 'warning': toastMessage.style === 'warning',
                 'danger': toastMessage.style === 'danger',
                 'success': toastMessage.style === 'success'}" @slideIn @slideOut>
-    <i (click)="close()" class="bi bi-x"></i>
+    <i (click)="close()" class="bi bi-x-lg"></i>
     <h4 class="my-0" *ngIf="toastMessage.title">{{toastMessage.title}}</h4>
     <div class="content">
         {{toastMessage.content}}
