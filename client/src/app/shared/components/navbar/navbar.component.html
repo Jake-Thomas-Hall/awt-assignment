@@ -12,6 +12,9 @@
                     <li><a [routerLink]="['/gallery']">Gallery</a></li>
                 </ul>
             </div>
+            <div *ngIf="(authService.subscribeToAuthenticated() | async)">
+                Logged in
+            </div>
             <a [routerLink]="['/contact']" class="button transparent"><span>Contact us <i class="bi bi-arrow-right-short"></i></span></a>
         </div>
     </nav>

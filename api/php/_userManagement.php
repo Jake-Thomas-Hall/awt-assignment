@@ -62,7 +62,7 @@ class UserManagement
         $to = $userRow['email'];
         $subject = 'Hazel Admin password reset';
         $message = "<p>Please click the link below to reset your password</p>
-        <a href='{$config->app_address}/admin/reset?token={$tokenRow['token']}'>Reset password</a>
+        <a href='{$config->app_address}/admin/login/reset-confirm?token={$tokenRow['token']}'>Reset password</a>
         <p>Please do not reply to this email; this inbox is not monitored.</p>";
         $headers = [
             'From' => $config->app_email,

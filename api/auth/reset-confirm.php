@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             jsonErrorResponse(500, $ex->getMessage(), null);
         }
 
-        jsonResponse("Password successfully reset, please attempt a login.");
+        jsonResponse("Password successfully reset, please attempt to login.");
     } else {
         jsonErrorResponse(400, 'Request reset failed; email not provided.');
     }

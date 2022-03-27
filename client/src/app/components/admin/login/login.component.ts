@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -14,6 +16,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private navigationService: NavigationService,
     private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private router: Router,
     private toastService: ToastService
   ) { }
 
@@ -21,8 +25,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.navigationService.setNavViewPreference(true);
 
     this.loginForm = this.fb.group({
-      email: [null, Validators.email],
-      password: [null]
+      email: [null, [Validators.email, Validators.required]],
+      password: [null, [Validators.required]]
+    })
+
+    this.authService.subscribeToAuthenticated().subscribe(authenticated => {
+      if (authenticated) {
+        this.router.navigate(['/']);
+      }
     })
   }
 
@@ -31,6 +41,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(): void {
-    this.toastService.openToast({ content: 'Login successful', style: 'success' });
+    this.authService.login(this.loginForm.value).subscribe(result => {
+      this.toastService.openToast({ content: 'Login successful', style: 'success', timeout: 10000 });
+      this.authService.setToken(result.data.token);
+      this.authService.setLoginStatus(true);
+      this.router.navigate(['/']);
+    });
   }
 }

@@ -13,11 +13,11 @@ export class AppConfigService {
 
   load() {
     const jsonFile = `assets/config.${environment.name}.json`;
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       this.http.get<AppConfig>(jsonFile).subscribe({ 
         next: (response) => {
           AppConfigService.settings = response;
-          resolve();
+          resolve(null);
         },
         error: (response) => {
           reject(`Could not load file ${jsonFile}: ${JSON.stringify(response)}`);

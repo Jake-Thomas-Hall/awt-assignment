@@ -41,13 +41,18 @@ a {
     padding: 6px 20px;
     border-radius: 20px;
     text-decoration: none;
-    transition: 0.1s;
+    transition: 0.3s;
     transition-property: background-color;
     font-weight: bold;
     border: none;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     font-size: 16px;
     cursor: pointer;
+
+    &:disabled {
+        background-color: rgba($color: #464646, $alpha: 0.5)!important;
+        cursor: not-allowed;
+    }
 
     &.transparent {
         background-color: hsla(0, 0%, 100%, 0.2);
@@ -295,6 +300,51 @@ a {
 // Forms
 .input-container {
     margin: 1.5rem 0;
+
+    input {
+        padding: 8px 14px;
+        border-radius: 5px;
+        border: 1px rgba(128, 128, 128, 0.322) solid;
+        margin: 0.5rem 0;
+        width: 100%;
+        font-size: 16px;
+        line-height: 28px;
+        outline-width: 0;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        min-height: 44px;
+    
+        &:focus {
+            border-color: var(--primary-colour);
+            box-shadow: 0 0 0 0.25rem rgb(var(--primary-colour-rgb) / 25%);
+    
+            &.ng-dirty.ng-invalid:not(.ng-untouched) {
+                border-color: $error-colour;
+                box-shadow: 0 0 0 0.25rem rgba($color: $error-colour, $alpha: 0.25);
+            }
+        }
+    
+        &.ng-dirty.ng-invalid:not(.ng-untouched) {
+            border: 1px rgba($color: $error-colour, $alpha: 1.0) solid;
+        }
+    }
+
+    &.hint {
+        margin-bottom: 0;
+
+        input {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.error-hint {
+    color: $error-colour;
+    padding: 6px 0 7px 0;
+    min-height: 32px;
+
+    small {
+        display: block;
+    }
 }
 
 .form-centre {
@@ -309,21 +359,5 @@ label {
     font-stretch: expanded;
 }
 
-input {
-    padding: 8px 14px;
-    border-radius: 5px;
-    border: 1px rgba(128, 128, 128, 0.322) solid;
-    margin: 0.5rem 0;
-    width: 100%;
-    font-size: 16px;
-    line-height: 28px;
-    outline-width: 0;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    min-height: 44px;
 
-    &:focus {
-        border-color: var(--primary-colour);
-        box-shadow: 0 0 0 0.25rem rgb(var(--primary-colour-rgb) / 25%);
-    }
-}
 // Forms end

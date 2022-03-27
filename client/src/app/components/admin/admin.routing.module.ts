@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./login/login.component";
+import { ResetConfirmComponent } from "./reset-confirm/reset-confirm.component";
 import { ResetComponent } from "./reset/reset.component";
 
 const routes: Routes = [{
@@ -14,6 +15,9 @@ const routes: Routes = [{
         },
         {
             path: 'login/reset', component: ResetComponent
+        },
+        {
+            path: 'login/reset-confirm', component: ResetConfirmComponent
         }
     ]
 }

@@ -5,11 +5,14 @@ import { AdminRoutingModule } from './admin.routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResetComponent } from './reset/reset.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ResetConfirmComponent } from './reset-confirm/reset-confirm.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    ResetComponent
+    ResetComponent,
+    ResetConfirmComponent
   ],
   imports: [
     CommonModule,
