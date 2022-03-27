@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  name: 'dev'
+  name: 'dev',
+  recaptcha: {
+    siteKey: '6LcR2RwfAAAAAFTeB18t2RcZfqmjcfjGxPMc4slT'
+  }
 };
 
 /*

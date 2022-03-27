@@ -2,12 +2,15 @@
 require __DIR__ . '/../php/_connect.php';
 require __DIR__ . '/../php/_userManagement.php';
 require __DIR__ . '/../php/_utilities.php';
+require __DIR__ . '/../php/_auth.php';
 
 $userManager = new UserManagement();
+$auth = new Auth();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['email'])) {
+    if (isset($_POST['email']) && isset($_POST['recaptchaToken'])) {
         try {
+            $auth->validateRecaptcha($_POST['recaptchaToken']);
             $result = $userManager->getIdFromName($_POST['email']);
 
             if (!is_null($result)) {
@@ -20,6 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             jsonErrorResponse(500, $exception->getMessage());
         }
     } else {
-        jsonErrorResponse(400, 'Request reset failed; email not provided.');
+        jsonErrorResponse(400, 'Request reset failed; required data not provided.');
     }
 }

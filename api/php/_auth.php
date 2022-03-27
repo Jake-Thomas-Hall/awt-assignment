@@ -10,6 +10,32 @@ class Auth
     public string $created = "";
     public string $token = "";
 
+    public function validateRecaptcha(string $recaptchaToken): void {
+        $config = include(__DIR__ . '/../config.php');
+
+        $fields = [
+            'secret' => $config->app_recaptchaSecret,
+            'response' => $recaptchaToken
+        ];
+
+        $fieldsString = http_build_query($fields);
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fieldsString);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $rawResult = curl_exec($ch);
+
+        $recaptchaVerify = json_decode($rawResult);
+
+        if ($recaptchaVerify->score < 0.35) {
+            throw new Exception('Request failed; our spam dedection determined that this request potentially originated from a bot, please try again.');
+        }
+    }
+
     public function login(string $email, string $password): void
     {
         global $connection;

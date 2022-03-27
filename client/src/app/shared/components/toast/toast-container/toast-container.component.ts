@@ -1,5 +1,6 @@
 import { animate, animateChild, query, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { triggerChildAnimation } from 'src/app/animations/trigger-child.animation';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -7,9 +8,7 @@ import { ToastService } from 'src/app/services/toast.service';
   templateUrl: './toast-container.component.html',
   styleUrls: ['./toast-container.component.scss'],
   animations: [
-    trigger('triggerChildAnimation', [
-      transition(':enter, :leave', [animate('0s'), query('*', [animateChild()])]),
-    ]),
+    triggerChildAnimation,
     trigger('verticalCollapse', [
       state('*', style({
         height: '*',

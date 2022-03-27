@@ -37,6 +37,12 @@ a {
     }
 }
 
+button {
+    font-family: 'Spline Sans', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
 .button {
     padding: 6px 20px;
     border-radius: 20px;
@@ -132,6 +138,10 @@ a {
 
 .flex-justify-items-center {
     justify-content: center;
+}
+
+.flex-justify-flex-end {
+    justify-content: flex-end;
 }
 
 .flex-wrap {
@@ -295,6 +305,10 @@ a {
 
 .overflow-hidden {
     overflow: hidden;
+}
+
+.position-relative {
+    position: relative;
 }
 
 // Forms

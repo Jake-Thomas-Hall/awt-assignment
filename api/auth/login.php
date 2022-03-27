@@ -7,8 +7,10 @@ $auth = new Auth();
 
 // Normal logins are done via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['email']) && isset($_POST['password'])) {
+    if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['recaptchaToken'])) {
         try {
+            // Use recaptcha to check user isn't bot before attempting login
+            $auth->validateRecaptcha($_POST['recaptchaToken']);
             $auth->login($_POST['email'], $_POST['password']);
 
             jsonResponse("Login successful", ['token' => $auth->token]);
@@ -23,17 +25,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Token checks done via GET - API endpoints are guarded by 'authGuard.php' being used inline, this endpoint can be used by frontend to check user access when loading 
 // a protected page.
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $requestHeaders = apache_request_headers();
-
-    if (!array_key_exists('Authorization', $requestHeaders)) {
-        jsonErrorResponse(403, 'Login failed, please login again.');
+    if (!isset($_GET['recaptchaToken'])) {
+        jsonErrorResponse(400, 'Login failed, bad request.');
     }
 
-    // Error out and return 403 if token authentication fails. If successful, return 200.
-    if (!$auth->authGuard($requestHeaders['Authorization'])) {
-        jsonErrorResponse(403, 'Login failed, please login again.');
+    try {
+        // Use recaptcha to check user isn't bot before attempting token login
+        $auth->validateRecaptcha($_GET['recaptchaToken']);
+        $requestHeaders = apache_request_headers();
+
+        if (!array_key_exists('Auth-Token', $requestHeaders)) {
+            jsonErrorResponse(403, 'Login failed, please login again.');
+        }
+    
+        // Error out and return 403 if token authentication fails. If successful, return 200.
+        if (!$auth->authGuard($requestHeaders['Auth-Token'])) {
+            jsonErrorResponse(403, 'Login failed, please login again.');
+        }
+        else {
+            jsonResponse("Token authentication passed.", ['authStatus' => true]);
+        }
     }
-    else {
-        jsonResponse("Token authentication passed.", ['authStatus' => true]);
+    catch (Exception $exception) {
+        jsonErrorResponse(400, $exception->getMessage());
     }
 }

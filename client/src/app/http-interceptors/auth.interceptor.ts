@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (this.authService.getToken()) {
             console.log('Added auth token during intercept');
             req = req.clone({
-                headers: req.headers.set('Authorization', this.authService.getToken()!)
+                headers: req.headers.set('Auth-Token', this.authService.getToken()!)
             });
         }
 

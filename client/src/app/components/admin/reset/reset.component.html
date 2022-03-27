@@ -1,7 +1,7 @@
 <div class="container">
     <div class="d-flex flex-justify-items-center flex-align-items-center h-100">
         <div class="card">
-            <div [formGroup]="resetForm" class="form-centre">
+            <form [formGroup]="resetForm" class="form-centre" (ngSubmit)="requestReset()">
                 <h2 class="mt-0">Reset your password</h2>
                 <div class="input-container">
                     <label for="email">Email</label>
@@ -9,10 +9,10 @@
                 </div>
                 
                 <div class="d-flex">
-                    <button appBackButton class="button grey mr-1"><i class="bi bi-arrow-left-short"></i> Back</button>
-                    <button [disabled]="resetForm.invalid" (click)="requestReset()" class="button primary flex-1"><span>Continue <i class="bi bi-arrow-right-short"></i></span></button>
+                    <button type="button" appBackButton class="button grey mr-1"><i class="bi bi-arrow-left-short"></i> Back</button>
+                    <button type="submit" [disabled]="resetForm.invalid" class="button primary flex-1"><span>Continue <i class="bi bi-arrow-right-short"></i></span></button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { slideInOut } from 'src/app/animations/slide-in-out.animation';
 import { CustomValidators } from 'src/app/models/custom-validators.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -25,7 +25,8 @@ export class ResetConfirmComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private recaptchaV3Service: ReCaptchaV3Service
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +35,8 @@ export class ResetConfirmComponent implements OnInit {
     this.resetConfirmForm = this.fb.group({
       token: [null],
       newPassword: [null, [Validators.required]],
-      newPasswordConfirm: [null, [Validators.required]]
+      newPasswordConfirm: [null, [Validators.required]],
+      recaptchaToken: [null]
     }, { validators: [CustomValidators.fieldsMatch('newPassword', 'newPasswordConfirm')] })
 
     this.activatedRoute.queryParams.subscribe(params => {
@@ -47,9 +49,15 @@ export class ResetConfirmComponent implements OnInit {
   }
 
   resetConfirm(): void {
-    this.authService.confirmReset(this.resetConfirmForm.value).subscribe(result => {
-      this.toastService.openToast({ content: result.message, style: 'success', timeout: 10000 });
-      this.router.navigate(['/']);
+    this.recaptchaV3Service.execute('resetConfirm').subscribe(token => {
+      this.resetConfirmForm.patchValue({ recaptchaToken: token });
+
+      this.authService.confirmReset(this.resetConfirmForm.value).subscribe(result => {
+        this.toastService.openToast({ content: result.message, style: 'success', timeout: 10000 });
+        this.authService.removeToken();
+        this.authService.setLoginStatus(false);
+        this.router.navigate(['/admin/login']);
+      });
     });
   }
 }

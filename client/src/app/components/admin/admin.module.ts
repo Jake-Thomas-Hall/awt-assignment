@@ -7,6 +7,7 @@ import { ResetComponent } from './reset/reset.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ResetConfirmComponent } from './reset-confirm/reset-confirm.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RecaptchaV3Module } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RecaptchaV3Module
   ]
 })
 export class AdminModule { }

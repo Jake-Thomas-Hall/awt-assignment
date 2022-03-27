@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private recaptchaV3Service: ReCaptchaV3Service
   ) { }
 
   ngOnInit(): void {
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.loginForm = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
-      password: [null, [Validators.required]]
+      password: [null, [Validators.required]],
+      recaptchaToken: [null]
     })
 
     this.authService.subscribeToAuthenticated().subscribe(authenticated => {
@@ -41,11 +44,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(): void {
-    this.authService.login(this.loginForm.value).subscribe(result => {
-      this.toastService.openToast({ content: 'Login successful', style: 'success', timeout: 10000 });
-      this.authService.setToken(result.data.token);
-      this.authService.setLoginStatus(true);
-      this.router.navigate(['/']);
+    this.recaptchaV3Service.execute('login').subscribe((token: string) => {
+      this.loginForm.patchValue({recaptchaToken: token});
+
+      this.authService.login(this.loginForm.value).subscribe(result => {
+        this.toastService.openToast({ content: 'Login successful', style: 'success', timeout: 10000 });
+        this.authService.setToken(result.data.token);
+        this.authService.setLoginStatus(true);
+        this.router.navigate(['/']);
+      });
     });
   }
 }
