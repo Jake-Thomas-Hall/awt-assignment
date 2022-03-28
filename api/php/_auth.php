@@ -31,6 +31,10 @@ class Auth
 
         $recaptchaVerify = json_decode($rawResult);
 
+        if (!property_exists($recaptchaVerify, 'score')) {
+            throw new Exception('Request failed; our spam dedection determined that this request potentially originated from a bot, please try again.');
+        }
+
         if ($recaptchaVerify->score < 0.35) {
             throw new Exception('Request failed; our spam dedection determined that this request potentially originated from a bot, please try again.');
         }

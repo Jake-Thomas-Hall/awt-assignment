@@ -87,6 +87,33 @@ button {
         }
     }
 
+    &.primary-secondary {
+        color: white;
+        background-color: $primary-colour-secondary;
+
+        &:hover {
+            background-color: $primary-colour-secondary-hover;
+        }
+    }
+
+    &.secondary {
+        color: white;
+        background-color: $secondary-colour;
+
+        &:hover {
+            background-color: $secondary-colour-hover;
+        }
+    }
+
+    &.danger {
+        color: white;
+        background-color: $error-colour;
+
+        &:hover {
+            background-color: $error-colour-hover;
+        }
+    }
+
     &.grey {
         color: black;
         background-color: rgb(235, 235, 235);
@@ -98,6 +125,10 @@ button {
 
     &.large {
         font-size: 1.3rem;
+    }
+
+    &.small {
+        font-size: 0.9em;
     }
 }
 

@@ -20,7 +20,6 @@ export class ErrorInterceptor implements HttpInterceptor {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (!(error.error instanceof ErrorEvent)) {
-            console.log('Handled error via intercept');
             const errorMessage: ErrorResponse = error.error;
             this.toastService.openToast({content: errorMessage.message, style: 'danger', timeout: 10000});
           }

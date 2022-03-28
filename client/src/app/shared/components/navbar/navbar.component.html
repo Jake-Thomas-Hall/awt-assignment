@@ -14,15 +14,15 @@
                 </ul>
             </div>
             <div class="right-container d-flex flex-align-items-center flex-justify-flex-end">
-                <div class="position-relative">
-                    <button (click)="toggle()" class="button transparent mr-1 dropdown-toggle"
+                <div class="position-relative" (appClickOutside)="expanded = false">
+                    <button (click)="toggle()" class="button transparent mr-1 dropdown-toggle" 
                         [class.expanded]="expanded" *ngIf="(authService.subscribeToAuthenticated() | async)"
                         @slideInOut>Admin
                         <i class="bi bi-caret-right-fill"></i>
                     </button>
-                    <div class="dropdown shadow-sm" *ngIf="expanded" @fadeInOut>
-                        <a class="button white mb-1" [routerLink]="['/', 'admin', 'users']">Manage users</a>
-                        <a class="button white mb-1" [routerLink]="['/', 'admin', 'account']">Manage account</a>
+                    <div class="dropdown shadow-sm" *ngIf="expanded" @fadeInOut >
+                        <a class="button white mb-1" (click)="close()" [routerLink]="['/', 'admin', 'users']">Manage users</a>
+                        <a class="button white mb-1" (click)="close()" [routerLink]="['/', 'admin', 'account']">Manage account</a>
                         <button class="button white w-100" (click)="logout()">Logout <i
                                 class="bi bi-box-arrow-left"></i></button>
                     </div>

@@ -21,6 +21,7 @@ import { ToastService } from 'src/app/services/toast.service';
   ]
 })
 export class ToastContainerComponent implements OnInit {
+  showPadding = false;
 
   constructor(public toastService: ToastService) { }
 

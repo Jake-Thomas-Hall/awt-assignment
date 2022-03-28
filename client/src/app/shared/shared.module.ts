@@ -7,6 +7,9 @@ import { BackButtonDirective } from './directives/back-button.directive';
 import { ToastContainerComponent } from './components/toast/toast-container/toast-container.component';
 import { ToastItemComponent } from './components/toast/toast-item/toast-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdvancedTextEditorComponent } from './components/advanced-text-editor/advanced-text-editor.component';
+import { SimpleTextEditorComponent } from './components/simple-text-editor/simple-text-editor.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     BackButtonDirective,
     ToastContainerComponent,
-    ToastItemComponent
+    ToastItemComponent,
+    AdvancedTextEditorComponent,
+    SimpleTextEditorComponent,
+    ClickOutsideDirective
   ],
   imports: [
     CommonModule,
@@ -25,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     FooterComponent,
     BackButtonDirective,
-    ToastContainerComponent
+    ToastContainerComponent,
+    AdvancedTextEditorComponent
   ]
 })
 export class SharedModule { }

@@ -40,8 +40,9 @@
     <div class="grid">
         <div class="col-6">
             <div class="h-100 d-flex flex-direction-column flex-justify-content-between">
-                <h1>About us</h1>
-                <p>Read our origins as a company and our company values.</p>
+                <!-- <h1>About us</h1>
+                <p>Read our origins as a company and our company values.</p> -->
+                <app-advanced-text-editor [pageSection]="pageContent.data?.homeCardFirst"></app-advanced-text-editor>
                 <div class="mt-1">
                     <a [routerLink]="['/about']" class="button primary large"><span>View <i class="bi bi-arrow-right-short"></i></span></a>
                 </div>
@@ -49,8 +50,9 @@
         </div>
         <div class="col-6">
             <div class="h-100 d-flex flex-direction-column flex-justify-content-between">
-                <h1>Our services</h1>
-                <p>We provide a variety of services to meet our client's needs; from small to large we have a services plan that should suit.</p>
+                <!-- <h1>Our services</h1>
+                <p>We provide a variety of services to meet our client's needs; from small to large we have a services plan that should suit.</p> -->
+                <app-advanced-text-editor [pageSection]="pageContent.data?.homeCardSecond"></app-advanced-text-editor>
                 <div class="mt-1">
                     <a [routerLink]="['/services']" class="button primary large"><span>View <i class="bi bi-arrow-right-short"></i></span></a>
                 </div>

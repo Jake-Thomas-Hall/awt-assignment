@@ -2,10 +2,18 @@
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
     width: 400px;
-    padding: 5rem 2rem 1rem 0.5rem;
     z-index: 1000;
+}
+
+.toast-padding {
+    div {
+        padding-right: 2rem;
+
+        &:first-child {
+            padding-top: 5rem;
+        }
+    }
 }
 
 div {

@@ -1,0 +1,16 @@
+<div class="position-relative">
+    <button *ngIf="!editing && (authService.subscribeToAuthenticated() | async)" class="button secondary edit" (click)="edit()">Edit <i class="bi bi-pencil-square"></i></button>
+
+    <div [innerHTML]="(this._pageSection | async)?.content" *ngIf="!editing">
+    
+    </div>
+    
+    <div [hidden]="!editing" class="mb-1">
+        <div #editor>
+        </div>
+    </div>
+    
+    <button *ngIf="editing" class="button transparent danger small mr-1" (click)="cancel()">Cancel <i class="bi bi-x-lg"></i></button>
+    <button *ngIf="editing" class="button primary-secondary save small" (click)="save()">Save <i class="bi bi-save"></i></button>
+</div>
+

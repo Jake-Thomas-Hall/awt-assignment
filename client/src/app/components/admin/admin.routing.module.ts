@@ -18,6 +18,9 @@ const routes: Routes = [{
         },
         {
             path: 'login/reset-confirm', component: ResetConfirmComponent
+        },
+        {
+            path: 'users', component: ResetConfirmComponent
         }
     ]
 }

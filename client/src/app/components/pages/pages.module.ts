@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { SwiperModule } from 'swiper/angular';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   imports: [
     CommonModule,
     SwiperModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ]
 })
 export class PagesModule { }

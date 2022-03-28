@@ -1,8 +1,5 @@
 <?php
 // Intended to be used as script via require before protected pages, not intended to run on it's own.
-require __DIR__ . '/../php/_auth.php';
-require __DIR__ . '/../php/_utilities.php';
-
 $auth = new Auth();
 
 $requestHeaders = apache_request_headers();
