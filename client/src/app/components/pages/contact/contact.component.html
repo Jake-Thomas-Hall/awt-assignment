@@ -1,0 +1,61 @@
+<div class="hero-image">
+    <div class="container first">
+        <h1 class="text-large white hero-text position-relative">
+            <app-simple-text-editor [pageSection]="pageContent.data?.contactTitle"></app-simple-text-editor>
+        </h1>
+    </div>
+</div>
+<main class="container pt-2 pb-2">
+    <div class="grid">
+        <div class="col-6">
+            <div class="h-100">
+                <app-advanced-text-editor [pageSection]="pageContent.data?.contactCardFirst"></app-advanced-text-editor>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="h-100">
+                <form [formGroup]="contactForm" (ngSubmit)="sendEmail()">
+                    <h2 class="position-relative"><app-simple-text-editor [pageSection]="pageContent.data?.contactCardSecondTitle"></app-simple-text-editor></h2>
+                    <div class="input-container">
+                        <label for="name">Name <span class="required-asterisk">*</span></label>
+                        <input id="name" type="text" formControlName="name">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="company">Company </label>
+                        <input id="company" type="text" formControlName="company">
+                    </div>
+
+                    <div class="input-container hint">
+                        <label for="email">Your email <span class="required-asterisk">*</span></label>
+                        <input id="email" type="email" formControlName="email">
+                    </div>
+                    <div class="error-hint">
+                        <small *ngIf="contactForm.get('email')?.errors?.['email']" @slideInOut>Email address format is not valid</small>
+                    </div>
+    
+                    <div class="input-container">
+                        <label for="message">Message <span class="required-asterisk">*</span></label>
+                        <textarea rows="6" id="message" type="text" formControlName="message"></textarea>
+                    </div>
+    
+                    <div class="d-flex">
+                        <button type="button" appBackButton class="button grey mr-1"><i class="bi bi-arrow-left-short"></i> Back</button>
+                        <button type="submit" [disabled]="contactForm.invalid"
+                            class="button primary flex-1"><span>Send <i
+                                    class="bi bi-arrow-right-short"></i></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="h-100">
+                <h2 class="position-relative"><app-simple-text-editor [pageSection]="pageContent.data?.contactCardThirdTitle"></app-simple-text-editor></h2>
+                <iframe
+                    src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ-VtNbG-OcUgRjZyWNkHoWO0&key=AIzaSyC9jMm3ekb4HU-dPi2LwPrQGA_r2zZc9cc"
+                    frameborder="0" referrerpolicy="no-referrer-when-downgrade" loading="lazy" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</main>

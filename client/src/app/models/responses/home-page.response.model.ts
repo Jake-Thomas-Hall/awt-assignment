@@ -6,6 +6,8 @@ export interface HomePageResponse {
 }
 
 export interface HomePageSections {
+    homeTitle: PageSection;
+    homeCarouselTitle: PageSection;
     homeCardFirst: PageSection;
     homeCardSecond: PageSection;
 }

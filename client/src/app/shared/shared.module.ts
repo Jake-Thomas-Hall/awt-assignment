@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdvancedTextEditorComponent } from './components/advanced-text-editor/advanced-text-editor.component';
 import { SimpleTextEditorComponent } from './components/simple-text-editor/simple-text-editor.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ContentEditableDirective } from './directives/content-editable.directive';
 
 @NgModule({
   declarations: [
@@ -20,19 +22,23 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     ToastItemComponent,
     AdvancedTextEditorComponent,
     SimpleTextEditorComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    ContentEditableDirective
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
     BackButtonDirective,
     ToastContainerComponent,
-    AdvancedTextEditorComponent
+    ContentEditableDirective,
+    AdvancedTextEditorComponent,
+    SimpleTextEditorComponent
   ]
 })
 export class SharedModule { }

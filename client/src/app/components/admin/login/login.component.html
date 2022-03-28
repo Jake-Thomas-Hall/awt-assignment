@@ -4,13 +4,13 @@
             <form [formGroup]="loginForm" class="form-centre" (ngSubmit)="login()">
                 <h2 class="mt-0">Admin sign in</h2>
                 <div class="input-container">
-                    <label for="email">Email</label>
+                    <label for="email">Email <span class="required-asterisk">*</span></label>
                     <input id="email" type="email" formControlName="email" placeholder="example@example.com">
                 </div>
                 
                 <div class="input-container">
                     <div class="d-flex forgot-password">
-                        <label for="password">Password</label>
+                        <label for="password">Password <span class="required-asterisk">*</span></label>
                         <a [routerLink]="['reset']">Forgot your password?</a>
                     </div>
                     <input id="password" type="password" formControlName="password">

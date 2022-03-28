@@ -11,6 +11,29 @@ class PageManagement {
         $pageContentQuery->execute() ?: throw new Exception("Error while updating page content.");
     }
 
+    public function sendEnquiryEmail(string $name, string $email, string $message, string $company = "") {
+        $config = include(__DIR__ . '/../config.php');
+        $messageConverted = nl2br($message);
+        $subjectFormatted = "Contact enquiry from $name";
+        if (!empty($company)) {
+            $subjectFormatted = $subjectFormatted . " - company '$company'";
+        }
+        
+        $messageConverted = $messageConverted . "<br/><br/><strong>Contact email</strong>: $email<br/><strong>Name</strong>: $name";
+
+        $to = $config->admin_email;
+        $subject = $subjectFormatted;
+        $message = $messageConverted;
+        $headers = [
+            'From' => $config->app_email,
+            'X-Mailer' => 'PHP/' . phpversion(),
+            'Content-Type' => 'text/html; charset=UTF-8',
+            'Reply-To' => $email
+        ];
+
+        mail($to, $subject, $message, $headers);
+    }
+
     public function getPageContent(string $page): array {
         global $connection;
         $pageContentArray = [];

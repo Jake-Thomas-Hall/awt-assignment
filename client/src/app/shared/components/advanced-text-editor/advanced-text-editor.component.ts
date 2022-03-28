@@ -50,13 +50,14 @@ export class AdvancedTextEditorComponent implements AfterViewInit{
 
   save(): void {
     this.editing = false;
-    this.recaptchaV3Service.execute('updatePageContent').subscribe(token => {
-      const pageSection = this._pageSection.getValue()!;
-      pageSection.content = this.editor.getData();
+    const pageSection = this._pageSection.getValue()!;
+    pageSection.content = this.editor.getData();
+    this._pageSection.next(pageSection);
 
+    this.recaptchaV3Service.execute('updatePageContent').subscribe(token => {
       this.pageContentService.updatePageContent({ id: pageSection.id, content: pageSection.content, recaptchaToken: token }).subscribe(result => {
         this.toastService.openToast({ content: result.message, style: 'success' });
-        this._pageSection.next(pageSection);
+        
       });
     });
   }

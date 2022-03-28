@@ -28,6 +28,14 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
 a {
     text-decoration: none;
     color: #635bff;
@@ -41,6 +49,13 @@ button {
     font-family: 'Spline Sans', Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
+}
+
+.required-asterisk{
+    color: $error-colour;
+    font-weight: bold;
+    margin-left: 3px;
+    font-size: 1.2em;
 }
 
 .button {
@@ -183,6 +198,10 @@ button {
     width: 50%;
 }
 
+.flex-item-100 {
+    width: 100%;
+}
+
 .flex-1 {
     flex: 1;
 }
@@ -265,7 +284,7 @@ button {
     }
 
     .col-12 {
-        grid-column: auto/span 8;
+        grid-column: auto/span 12;
     }
 }
 // Grid system end
@@ -344,9 +363,9 @@ button {
 
 // Forms
 .input-container {
-    margin: 1.5rem 0;
+    margin: 0 0 1.5rem 0;
 
-    input {
+    input, textarea {
         padding: 8px 14px;
         border-radius: 5px;
         border: 1px rgba(128, 128, 128, 0.322) solid;
@@ -357,6 +376,7 @@ button {
         outline-width: 0;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         min-height: 44px;
+        font-family: inherit;
     
         &:focus {
             border-color: var(--primary-colour);

@@ -2,8 +2,8 @@
     <div class="container first">
         <div class="d-flex h-100 flex-align-items-center">
             <div class="flex-item-50">
-                <h1 class="text-large white hero-text">
-                    Photography done right.
+                <h1 class="text-large white hero-text position-relative">
+                    <app-simple-text-editor [pageSection]="pageContent.data?.homeTitle"></app-simple-text-editor>
                 </h1>
             </div>
             <div class="flex-item-50">
@@ -33,15 +33,13 @@
     </div>
 </div>
 <section class="container">
-    <h2 class="text-section-header">Examples of our work</h2>
+    <h2 class="text-section-header position-relative"><app-simple-text-editor [pageSection]="pageContent.data?.homeCarouselTitle"></app-simple-text-editor></h2>
     <app-carousel></app-carousel>
 </section>
 <main class="container pt-2 pb-2">
     <div class="grid">
         <div class="col-6">
             <div class="h-100 d-flex flex-direction-column flex-justify-content-between">
-                <!-- <h1>About us</h1>
-                <p>Read our origins as a company and our company values.</p> -->
                 <app-advanced-text-editor [pageSection]="pageContent.data?.homeCardFirst"></app-advanced-text-editor>
                 <div class="mt-1">
                     <a [routerLink]="['/about']" class="button primary large"><span>View <i class="bi bi-arrow-right-short"></i></span></a>
@@ -50,8 +48,6 @@
         </div>
         <div class="col-6">
             <div class="h-100 d-flex flex-direction-column flex-justify-content-between">
-                <!-- <h1>Our services</h1>
-                <p>We provide a variety of services to meet our client's needs; from small to large we have a services plan that should suit.</p> -->
                 <app-advanced-text-editor [pageSection]="pageContent.data?.homeCardSecond"></app-advanced-text-editor>
                 <div class="mt-1">
                     <a [routerLink]="['/services']" class="button primary large"><span>View <i class="bi bi-arrow-right-short"></i></span></a>

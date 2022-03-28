@@ -1,4 +1,4 @@
-<div class="position-relative">
+<div class="position-relative advanced-text">
     <button *ngIf="!editing && (authService.subscribeToAuthenticated() | async)" class="button secondary edit" (click)="edit()">Edit <i class="bi bi-pencil-square"></i></button>
 
     <div [innerHTML]="(this._pageSection | async)?.content" *ngIf="!editing">

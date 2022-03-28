@@ -5,17 +5,23 @@ import { CarouselComponent } from './home/carousel/carousel.component';
 import { SwiperModule } from 'swiper/angular';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ContactComponent } from './contact/contact.component';
+import { PagesRoutingModule } from './pages.routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CarouselComponent
+    CarouselComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
     SwiperModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    PagesRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

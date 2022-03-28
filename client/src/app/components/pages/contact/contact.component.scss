@@ -1,0 +1,23 @@
+.hero-image {
+    width: 100%;
+    background-image: url("/assets/static/images/7263826638_3969ad11c1_k.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 45vh;
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 55vh;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+iframe {
+    width: 100%;
+    min-height: 700px;
+    border-radius: 0.5rem;
+}

@@ -1,1 +1,12 @@
-<p>simple-text-editor works!</p>
+<span *ngIf="!editing">{{(_pageSection | async)?.content}}</span>
+
+<button class="button secondary edit" (click)="edit()" *ngIf="!editing && (authService.subscribeToAuthenticated() | async)">Edit <i class="bi bi-pencil-square"></i></button>
+
+<form [formGroup]="editTextForm" *ngIf="editing" (ngSubmit)="save()">
+    <div contenteditable [textContent]="editedText" (keydown)="onEditKeydown($event)" formControlName="content">
+    </div>
+    <span class="edit-buttons">
+        <button type="button" class="button danger mr-1" (click)="cancel()">Cancel <i class="bi bi-x-lg"></i></button>
+        <button type="submit" class="button primary-secondary" [disabled]="editTextForm.invalid">Save <i class="bi bi-save"></i></button>
+    </span>
+</form>

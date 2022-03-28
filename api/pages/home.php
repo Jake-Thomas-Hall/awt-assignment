@@ -2,19 +2,12 @@
 require __DIR__ . '/../php/_connect.php';
 require __DIR__ . '/../php/_utilities.php';
 require __DIR__ . '/../php/_pageManagement.php';
-require __DIR__ . '/../php/_auth.php';
 
 $pageManager = new PageManagement();
-$auth = new Auth();
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    if (!isset($_GET['recaptchaToken'])) {
-        jsonErrorResponse(400, 'Recaptcha token not provided, cannot process request without token');
-    }
-    
     $result = [];
     try {
-        $auth->validateRecaptcha($_GET['recaptchaToken']);
         $result = $pageManager->getPageContent('home');
     }
     catch (Exception $exception) {
@@ -22,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
     
     $formattedResults = [
+        'homeTitle' => $result[array_search("homeTitle", array_column($result, 'pageSection'))],
+        'homeCarouselTitle' => $result[array_search("homeCarouselTitle", array_column($result, 'pageSection'))],
         'homeCardFirst' => $result[array_search("homeCardFirst", array_column($result, 'pageSection'))],
         'homeCardSecond' => $result[array_search("homeCardSecond", array_column($result, 'pageSection'))]
     ];

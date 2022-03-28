@@ -12,16 +12,12 @@ export class HomeComponent implements OnInit {
   pageContent: HomePageResponse = { message: undefined, data: undefined };
 
   constructor(
-    private pageContentService: PageContentService,
-    private recaptchaV3Service: ReCaptchaV3Service
+    private pageContentService: PageContentService
     ) { }
 
   ngOnInit(): void {
-    this.recaptchaV3Service.execute('homePageLoad').subscribe(token => {
-      this.pageContentService.getHomePageContent(token).subscribe(result => {
-        this.pageContent = result;
-      });
+    this.pageContentService.getHomePageContent().subscribe(result => {
+      this.pageContent = result;
     });
   }
-
 }

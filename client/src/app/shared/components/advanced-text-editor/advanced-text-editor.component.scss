@@ -1,10 +1,10 @@
-h2 {
+.advanced-text h2 {
     font-size: 2em;
 }
 
-.edit {
+.advanced-text .edit {
     position: absolute;
     z-index: 1000;
-    top: 5px;
+    top: -20px;
     right: 5px;
 }

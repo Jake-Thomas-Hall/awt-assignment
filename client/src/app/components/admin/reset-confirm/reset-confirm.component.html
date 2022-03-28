@@ -4,12 +4,12 @@
             <form [formGroup]="resetConfirmForm" class="form-centre" (ngSubmit)="resetConfirm()">
                 <h2 class="mt-0">Create new password</h2>
                 <div class="input-container">
-                    <label for="newPassword">New Password</label>
+                    <label for="newPassword">New Password <span class="required-asterisk">*</span></label>
                     <input id="newPassword" type="password" formControlName="newPassword">
                 </div>
 
                 <div class="input-container hint">
-                    <label for="newPasswordConfirm">Confirm Password</label>
+                    <label for="newPasswordConfirm">Confirm Password <span class="required-asterisk">*</span></label>
                     <input id="newPasswordConfirm" type="password" formControlName="newPasswordConfirm">
                 </div>
                 <div class="error-hint" >
