@@ -209,12 +209,12 @@ button {
 
 // Text helpers
 .text-large {
-    font-size: 7rem;
+    font-size: 4rem;
     font-weight: bold;
 }
 
 .text-section-header {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -423,6 +423,45 @@ label {
     font-weight: bold;
     font-stretch: expanded;
 }
-
-
 // Forms end
+
+// Media queries start
+@media (max-width: 1024px) {
+    .text-large {
+        font-size: 3.5rem;
+    }
+
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 98%;
+    }
+
+    .text-large {
+        font-size: 3rem;
+        text-align: center;
+    }
+    
+    .d-flex {
+        flex-wrap: wrap;
+    }
+
+    .flex-item-50 {
+        width: 100%;
+    }
+
+    .grid {
+        .col-6 {
+            grid-column: auto/span 12;
+        }
+    }
+
+    .text-centre-md {
+        text-align: center;
+    }
+}
+// Media queries end

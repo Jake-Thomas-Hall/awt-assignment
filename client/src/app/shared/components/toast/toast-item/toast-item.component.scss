@@ -38,3 +38,9 @@ i {
 h4 {
     margin-bottom: 0.5rem;
 }
+
+@media (max-width: 768px) {
+    .toast-item {
+        padding: 20px 15px;
+    }
+}

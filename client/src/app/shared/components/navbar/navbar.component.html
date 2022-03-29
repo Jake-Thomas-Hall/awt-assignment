@@ -1,7 +1,7 @@
 <header>
     <nav>
         <div class="nav-container" [class.dark]="(navigationSerivce.subscribeToNavViewPreference() | async)">
-            <a [routerLink]="['/']" class="logo-container"
+            <a [routerLink]="['/']" class="logo-container" [class.logo-container-md]="(authService.subscribeToAuthenticated() | async)"
                 [ngSwitch]="navigationSerivce.subscribeToNavViewPreference() | async">
                 <img src="/assets/static/images/logo-dark.png" alt="Logo" class="logo" *ngSwitchCase="true">
                 <img src="/assets/static/images/logo-white.png" alt="Logo" class="logo" *ngSwitchDefault>

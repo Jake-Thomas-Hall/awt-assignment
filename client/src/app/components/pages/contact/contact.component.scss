@@ -21,3 +21,13 @@ iframe {
     min-height: 700px;
     border-radius: 0.5rem;
 }
+
+@media (max-width: 768px) {
+    .hero-image {
+        height: 35vh;
+    }
+
+    .hero-image::before {
+        bottom: 65vh;
+    }
+}

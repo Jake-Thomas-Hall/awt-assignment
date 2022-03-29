@@ -26,3 +26,9 @@ div {
         margin-top: 15px;
     }
 }
+
+@media (max-width: 768px) {
+    :host {
+        width: 325px;
+    }
+}

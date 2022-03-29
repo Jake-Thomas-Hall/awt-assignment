@@ -145,5 +145,37 @@ nav {
     }
 }
 
+.logo-container-md {
+    flex: 0.6;
+}
+
+@media (max-width: 1024px) {
+    nav {
+        max-width: 90%;
+    }
+
+    .logo-container-md {
+        flex: 0.4;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        max-width: 98%;
+    } 
+
+    .logo-container-md {
+        flex: 0.5;
+    }
+
+    .middle-container {
+        ul {
+            li {
+                padding: 6px 10px;
+            }
+        }
+    }
+}
+
 
 
