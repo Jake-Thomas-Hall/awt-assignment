@@ -17,6 +17,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class NavbarComponent implements OnInit {
   expanded = false;
+  sideNavExpanded = false;
 
   constructor(
     public navigationSerivce: NavigationService,
@@ -45,5 +46,9 @@ export class NavbarComponent implements OnInit {
 
   close() {
     this.expanded = false;
+  }
+
+  expandSidenav() {
+    this.sideNavExpanded = !this.sideNavExpanded; 
   }
 }
