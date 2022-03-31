@@ -3,13 +3,14 @@
     background-image: url("/assets/static/images/11109074334_880f24f495_k1.jpg");
     background-size: cover;
     height: 90vh;
+    position: relative;
 }
 
 .hero-image::before {
     content: "";
     position: absolute;
     top: 0;
-    bottom: 10vh;
+    bottom: 0;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.336);

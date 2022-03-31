@@ -4,13 +4,14 @@
     background-size: cover;
     background-position: center;
     height: 45vh;
+    position: relative;
 }
 
 .hero-image::before {
     content: "";
     position: absolute;
     top: 0;
-    bottom: 55vh;
+    bottom: 0;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.55);
@@ -25,9 +26,5 @@ iframe {
 @media (max-width: 768px) {
     .hero-image {
         height: 35vh;
-    }
-
-    .hero-image::before {
-        bottom: 65vh;
     }
 }
