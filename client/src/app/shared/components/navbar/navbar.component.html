@@ -48,7 +48,7 @@
 </header>
 <div class="sidenav" [class.show]="!sideNavExpanded">
     <div class="sidenav-header">
-        <a [routerLink]="['/']" class="logo-container">
+        <a [routerLink]="['/']" class="logo-container" (click)="close()">
             <img src="/assets/static/images/logo-white.png" alt="Logo" class="logo">
         </a>
         <i class="bi bi-x" (click)="expandSidenav()"></i>
