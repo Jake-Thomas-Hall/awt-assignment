@@ -40,12 +40,14 @@ export class NavbarComponent implements OnInit {
         this.authService.setLoginStatus(false);
         this.authService.removeToken();
         this.expanded = false;
+        this.sideNavExpanded = false;
       });
     });
   }
 
   close() {
     this.expanded = false;
+    this.sideNavExpanded = false;
   }
 
   expandSidenav() {

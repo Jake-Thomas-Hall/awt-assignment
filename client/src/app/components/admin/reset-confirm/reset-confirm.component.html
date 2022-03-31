@@ -1,28 +1,26 @@
 <div class="container">
     <div class="d-flex flex-justify-items-center flex-align-items-center h-100">
-        <div class="card">
-            <form [formGroup]="resetConfirmForm" class="form-centre" (ngSubmit)="resetConfirm()">
-                <h2 class="mt-0">Create new password</h2>
-                <div class="input-container">
-                    <label for="newPassword">New Password <span class="required-asterisk">*</span></label>
-                    <input id="newPassword" type="password" formControlName="newPassword">
-                </div>
+        <form [formGroup]="resetConfirmForm" class="form-centre" (ngSubmit)="resetConfirm()">
+            <h2 class="mt-0">Create new password</h2>
+            <div class="input-container">
+                <label for="newPassword">New Password <span class="required-asterisk">*</span></label>
+                <input id="newPassword" type="password" formControlName="newPassword">
+            </div>
 
-                <div class="input-container hint">
-                    <label for="newPasswordConfirm">Confirm Password <span class="required-asterisk">*</span></label>
-                    <input id="newPasswordConfirm" type="password" formControlName="newPasswordConfirm">
-                </div>
-                <div class="error-hint" >
-                    <small *ngIf="resetConfirmForm.errors?.['fieldsDoNotMatch']" @slideInOut>Passwords do not match</small>
-                </div>
+            <div class="input-container hint">
+                <label for="newPasswordConfirm">Confirm Password <span class="required-asterisk">*</span></label>
+                <input id="newPasswordConfirm" type="password" formControlName="newPasswordConfirm">
+            </div>
+            <div class="error-hint" >
+                <small *ngIf="resetConfirmForm.errors?.['fieldsDoNotMatch']" @slideInOut>Passwords do not match</small>
+            </div>
 
-                <div class="d-flex">
-                    <button type="button" appBackButton class="button grey mr-1"><i class="bi bi-arrow-left-short"></i> Back</button>
-                    <button type="submit" [disabled]="resetConfirmForm.invalid"
-                        class="button primary flex-1"><span>Continue <i
-                                class="bi bi-arrow-right-short"></i></span></button>
-                </div>
-            </form>
-        </div>
+            <div class="d-flex">
+                <button type="button" appBackButton class="button grey mr-1"><i class="bi bi-arrow-left-short"></i> Back</button>
+                <button type="submit" [disabled]="resetConfirmForm.invalid"
+                    class="button primary flex-1"><span>Continue <i
+                            class="bi bi-arrow-right-short"></i></span></button>
+            </div>
+        </form>
     </div>
 </div>

@@ -1,7 +1,8 @@
 <header>
     <nav>
         <div class="nav-container" [class.dark]="(navigationSerivce.subscribeToNavViewPreference() | async)">
-            <a [routerLink]="['/']" class="logo-container" [class.logo-container-md]="(authService.subscribeToAuthenticated() | async)"
+            <a [routerLink]="['/']" class="logo-container"
+                [class.logo-container-md]="(authService.subscribeToAuthenticated() | async)"
                 [ngSwitch]="navigationSerivce.subscribeToNavViewPreference() | async">
                 <img src="/assets/static/images/logo-dark.png" alt="Logo" class="logo" *ngSwitchCase="true">
                 <img src="/assets/static/images/logo-white.png" alt="Logo" class="logo" *ngSwitchDefault>
@@ -15,14 +16,16 @@
             </div>
             <div class="right-container d-flex flex-align-items-center flex-justify-flex-end">
                 <div class="position-relative" (appClickOutside)="expanded = false">
-                    <button (click)="toggle()" class="button transparent mr-1 dropdown-toggle" 
+                    <button (click)="toggle()" class="button transparent mr-1 dropdown-toggle"
                         [class.expanded]="expanded" *ngIf="(authService.subscribeToAuthenticated() | async)"
                         @slideInOut>Admin
                         <i class="bi bi-caret-right-fill"></i>
                     </button>
-                    <div class="dropdown shadow-sm" *ngIf="expanded" @fadeInOut >
-                        <a class="button white mb-1" (click)="close()" [routerLink]="['/', 'admin', 'users']">Manage users</a>
-                        <a class="button white mb-1" (click)="close()" [routerLink]="['/', 'admin', 'account']">Manage account</a>
+                    <div class="dropdown shadow-sm" *ngIf="expanded" @fadeInOut>
+                        <a class="button white mb-1" (click)="close()" [routerLink]="['/', 'admin', 'users']">Manage
+                            users</a>
+                        <a class="button white mb-1" (click)="close()" [routerLink]="['/', 'admin', 'account']">Manage
+                            account</a>
                         <button class="button white w-100" (click)="logout()">Logout <i
                                 class="bi bi-box-arrow-left"></i></button>
                     </div>
@@ -46,9 +49,26 @@
 <div class="sidenav" [class.show]="!sideNavExpanded">
     <div class="sidenav-header">
         <a [routerLink]="['/']" class="logo-container">
-                <img src="/assets/static/images/logo-white.png" alt="Logo" class="logo">
+            <img src="/assets/static/images/logo-white.png" alt="Logo" class="logo">
         </a>
         <i class="bi bi-x" (click)="expandSidenav()"></i>
+    </div>
+    <div class="sidenav-links">
+        <ul>
+            <li (click)="close()"><a [routerLink]="['/about']" >About</a></li>
+            <li (click)="close()"><a [routerLink]="['/services']" >Services</a></li>
+            <li (click)="close()"><a [routerLink]="['/gallery']">Gallery</a></li>
+            <li (click)="close()"><a [routerLink]="['/contact']"><span>Contact us <i class="bi bi-arrow-right-short"></i></span></a></li>
+        </ul>
+    </div>
+    <div class="sidenav-links border-top" *ngIf="(authService.subscribeToAuthenticated() | async)">
+        <ul>
+            <li (click)="close()"><a [routerLink]="['/', 'admin', 'users']">Manage
+                    users</a></li>
+            <li (click)="close()"><a [routerLink]="['/', 'admin', 'account']">Manage
+                    account</a></li>
+            <li><button (click)="logout()">Logout <i class="bi bi-box-arrow-left"></i></button></li>
+        </ul>
     </div>
 </div>
 <div class="sidenav-overlay" (click)="expandSidenav()" *ngIf="sideNavExpanded" @fadeInOut>

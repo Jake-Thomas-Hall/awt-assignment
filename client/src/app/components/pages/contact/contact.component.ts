@@ -49,4 +49,8 @@ export class ContactComponent implements OnInit {
       });
     });
   }
+
+  resetForm() {
+    this.contactForm.reset();
+  }
 }

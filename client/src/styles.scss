@@ -414,6 +414,7 @@ button {
 
 .form-centre {
     min-width: 400px;
+    padding-top: 2rem;
 }
 
 label {
@@ -466,6 +467,12 @@ label {
 
     .text-section-header {
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-centre {
+        width: 100%;
     }
 }
 // Media queries end
