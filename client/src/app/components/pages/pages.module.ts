@@ -8,12 +8,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ContactComponent } from './contact/contact.component';
 import { PagesRoutingModule } from './pages.routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CarouselComponent,
-    ContactComponent
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

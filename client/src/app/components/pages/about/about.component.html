@@ -1,0 +1,54 @@
+<div class="hero-image">
+    <div class="container first">
+        <h1 class="text-large white hero-text position-relative">
+            <app-simple-text-editor [pageSection]="pageContent.data?.aboutTitle"></app-simple-text-editor>
+        </h1>
+    </div>
+</div>
+<main class="pt-1 pb-2">
+    <div class="container py-2">
+        <app-advanced-text-editor [pageSection]="pageContent.data?.aboutCardFirst"></app-advanced-text-editor>
+    </div>
+    <!-- <app-advanced-text-editor [pageSection]="pageContent.data?.contactCardFirst"></app-advanced-text-editor> -->
+    <div class="background-alternate">
+        <div class="container py-2">
+            <div class="grid">
+                <div class="col-4 about-image h-100">
+                </div>
+                <div class="col-8">
+                    <div class="h-100">
+                        <app-advanced-text-editor [pageSection]="pageContent.data?.aboutCardSecond"></app-advanced-text-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container py-2">
+        <div class="grid">
+            <div class="col-8 h-100">
+                <div class="">
+                    <app-advanced-text-editor [pageSection]="pageContent.data?.aboutCardThird"></app-advanced-text-editor>
+                </div>
+            </div>
+            <div class="col-4 about-image h-100">
+            </div>
+        </div>
+    </div>
+    <div class="container py-1">
+        <div class="grid">
+            <div class="about-final-image">
+                <img  src="/assets/static/images/13044240813_333cddd496_k.jpg" alt="Flowers and sunshine picture">
+            </div>
+            <div class="about-final-image">
+                <img src="/assets/static/images/14741141636_35e3503b2a_k.jpg" alt="Night time forest picture">
+            </div>
+            <div class="about-final-image">
+                <img src="/assets/static/images/21445725364_ae6bf445c4_k.jpg" alt="Pier picture">
+            </div>
+            <div class="about-final-image">
+                <img src="/assets/static/images/21469375458_34b8fbba5f_k.jpg" alt="Foggy mountain forest picture">
+            </div>
+        </div>
+    </div>
+</main>

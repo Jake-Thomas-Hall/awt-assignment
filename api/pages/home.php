@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         jsonErrorResponse(500, $exception->getMessage());
     }
     
+    // Return results in a formatted associated array.
     $formattedResults = [
         'homeTitle' => $result[array_search("homeTitle", array_column($result, 'pageSection'))],
         'homeCarouselTitle' => $result[array_search("homeCarouselTitle", array_column($result, 'pageSection'))],

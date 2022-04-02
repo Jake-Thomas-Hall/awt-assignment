@@ -34,13 +34,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.expanded = false;
+    this.sideNavExpanded = false;
     this.recaptchaV3Service.execute('logout').subscribe(token => {
       this.authService.logout(token).subscribe(response => {
         this.toastService.openToast({ content: response.message, style: 'success'});
         this.authService.setLoginStatus(false);
         this.authService.removeToken();
-        this.expanded = false;
-        this.sideNavExpanded = false;
       });
     });
   }

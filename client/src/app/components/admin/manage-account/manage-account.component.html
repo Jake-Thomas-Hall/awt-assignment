@@ -1,0 +1,66 @@
+<div class="container first">
+    <button type="button" appBackButton class="button grey mb-1 mt-1"><i class="bi bi-arrow-left-short"></i> Back</button>
+    <div class="grid mb-1">
+        <div class="col-4">
+            <p><strong>Your Email</strong></p>
+            <p>{{userDetailsResponse?.email}}</p>
+        </div>
+        <div class="col-4">
+            <p><strong>Account created</strong></p>
+            <p>{{userDetailsResponse?.created | date:'medium'}}</p>
+        </div>
+        <div class="col-6">
+            <div class="h-100">
+                <form [formGroup]="updateDetailsForm" (ngSubmit)="updateDetails()">
+                    <h2 class="mt-0">Update your details</h2>
+                    <div class="input-container">
+                        <label for="firstName">First name <span class="required-asterisk">*</span></label>
+                        <input id="firstName" type="text" formControlName="firstName" placeholder="John">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="lastName">Last name <span class="required-asterisk">*</span></label>
+                        <input id="lastName" type="text" formControlName="lastName" placeholder="Smith">
+                    </div>
+
+                    <button type="submit" [disabled]="updateDetailsForm.invalid"
+                        class="button primary"><span>Continue <i
+                                class="bi bi-arrow-right-short"></i></span></button>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="h-100">
+                <form [formGroup]="updatePasswordForm" (ngSubmit)="updatePassword()">
+                    <h2 class="mt-0">Update your password</h2>
+                    <div class="alert info mb-1">
+                        Updating your password will log you out from all sessions, you will need to log back in again afterwards.
+                    </div>
+                    <div class="input-container">
+                        <label for="currentPassword">Current password <span class="required-asterisk">*</span></label>
+                        <input id="currentPassword" type="password" formControlName="currentPassword">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="newPassword">New Password <span class="required-asterisk">*</span></label>
+                        <input id="newPassword" type="password" formControlName="newPassword">
+                    </div>
+
+                    <div class="input-container hint">
+                        <label for="newPasswordConfirm">Confirm Password <span
+                                class="required-asterisk">*</span></label>
+                        <input id="newPasswordConfirm" type="password" formControlName="newPasswordConfirm">
+                    </div>
+                    <div class="error-hint">
+                        <small *ngIf="updatePasswordForm.errors?.['fieldsDoNotMatch']" @slideInOut>Passwords do not
+                            match</small>
+                    </div>
+
+                        <button type="submit" [disabled]="updatePasswordForm.invalid"
+                            class="button primary"><span>Continue
+                                <i class="bi bi-arrow-right-short"></i></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

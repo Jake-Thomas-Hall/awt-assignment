@@ -13,28 +13,35 @@ class Auth
     public function validateRecaptcha(string $recaptchaToken): void {
         $config = include(__DIR__ . '/../config.php');
 
+        // Prepare POST fields for curl
         $fields = [
             'secret' => $config->app_recaptchaSecret,
             'response' => $recaptchaToken
         ];
 
+        // Build the fields into query string.
         $fieldsString = http_build_query($fields);
 
+        // Initialise curl and set options to perform query
         $ch = curl_init();
-
         curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fieldsString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+        // Get raw query result
         $rawResult = curl_exec($ch);
 
+        // Decode the resulting JSON.
         $recaptchaVerify = json_decode($rawResult);
 
+        // If score does not exist, then for some reason the recaptcha query failed. Do not return informative message, just return same message for security.
         if (!property_exists($recaptchaVerify, 'score')) {
             throw new Exception('Request failed; our spam dedection determined that this request potentially originated from a bot, please try again.');
         }
 
+        // Disallow scores below 0.35, most of the time scores come back as 0.9, so decided to be really forgiving here considering now alternative 
+        // recaptcha v2 auth can take place instead on frontend.
         if ($recaptchaVerify->score < 0.35) {
             throw new Exception('Request failed; our spam dedection determined that this request potentially originated from a bot, please try again.');
         }
@@ -44,6 +51,7 @@ class Auth
     {
         global $connection;
 
+        // Fetch user details by email
         $userQuery = $connection->prepare("SELECT id, firstName, lastName, email, password, created FROM tbl_users WHERE email = ?");
 
         $userQuery->bind_param("s", $email);
@@ -52,9 +60,11 @@ class Auth
         $userQuery->bind_result($resultId, $resultFirstName, $resultLastName, $resultEmail, $resultPassword, $resultCreated);
         $userQuery->store_result();
 
+        // If no user found, throw error.
         if ($userQuery->num_rows() > 0) {
             $userQuery->fetch();
 
+            // Validate password, if fails, return error.
             if (password_verify($password, $resultPassword)) {
                 // Store user details for later potential use within this Auth class instance
                 $this->id = $resultId;
@@ -90,6 +100,7 @@ class Auth
     public function logout(string $token): void {
         global $connection;
 
+        // Remove this specific login token, doesn't remove all login tokens for user in order to preserve other sessions they may have.
         $logoutQuery = $connection->prepare("DELETE FROM tbl_authorise WHERE token = ?");
 
         $logoutQuery->bind_param("s", $token);
@@ -104,6 +115,7 @@ class Auth
     {
         global $connection;
 
+        // Function is used to check if token is a valid login token
         $tokenQuery = $connection->prepare("SELECT userId FROM tbl_authorise WHERE token = ?");
 
         $tokenQuery->bind_param("s", $token);

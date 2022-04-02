@@ -55,17 +55,17 @@
     </div>
     <div class="sidenav-links">
         <ul>
-            <li (click)="close()"><a [routerLink]="['/about']" >About</a></li>
-            <li (click)="close()"><a [routerLink]="['/services']" >Services</a></li>
-            <li (click)="close()"><a [routerLink]="['/gallery']">Gallery</a></li>
-            <li (click)="close()"><a [routerLink]="['/contact']"><span>Contact us <i class="bi bi-arrow-right-short"></i></span></a></li>
+            <li><a [routerLink]="['/about']" (click)="close()">About</a></li>
+            <li><a [routerLink]="['/services']" (click)="close()">Services</a></li>
+            <li><a [routerLink]="['/gallery']" (click)="close()">Gallery</a></li>
+            <li><a [routerLink]="['/contact']" (click)="close()"><span>Contact us <i class="bi bi-arrow-right-short"></i></span></a></li>
         </ul>
     </div>
     <div class="sidenav-links border-top" *ngIf="(authService.subscribeToAuthenticated() | async)">
         <ul>
-            <li (click)="close()"><a [routerLink]="['/', 'admin', 'users']">Manage
+            <li><a [routerLink]="['/', 'admin', 'users']" (click)="close()">Manage
                     users</a></li>
-            <li (click)="close()"><a [routerLink]="['/', 'admin', 'account']">Manage
+            <li><a [routerLink]="['/', 'admin', 'account']" (click)="close()">Manage
                     account</a></li>
             <li><button (click)="logout()">Logout <i class="bi bi-box-arrow-left"></i></button></li>
         </ul>

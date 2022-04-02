@@ -194,6 +194,10 @@ button {
     flex-wrap: wrap;
 }
 
+.flex-no-wrap {
+    flex-wrap: nowrap!important;
+}
+
 .flex-item-50 {
     width: 50%;
 }
@@ -255,6 +259,16 @@ button {
 
 .shadow-sm {
     box-shadow: 0 0.3rem 0.5rem rgba(0,0,0,0.2);
+}
+
+blockquote {
+    overflow: hidden;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    border-left: 5px solid #ccc;
 }
 
 // Grid system
@@ -351,6 +365,16 @@ button {
     padding-bottom: 2rem;
 }
 
+.py-1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-2 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
 // Padding/Margin utilities end
 
 .overflow-hidden {
@@ -359,6 +383,16 @@ button {
 
 .position-relative {
     position: relative;
+}
+
+.alert {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+
+    &.info {
+        background-color: rgb(215, 230, 250);
+        color: rgb(17, 73, 99);
+    }
 }
 
 // Forms
@@ -377,6 +411,7 @@ button {
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         min-height: 44px;
         font-family: inherit;
+        max-width: 400px;
     
         &:focus {
             border-color: var(--primary-colour);
@@ -426,6 +461,80 @@ label {
 }
 // Forms end
 
+// Table styling
+.table-container {
+    overflow-x: auto;
+    
+}
+
+table {
+    width: 100%;
+    min-width: 768px;
+    border-collapse: collapse;
+    margin: 25px 0;
+    border-spacing: 0px;
+    
+    thead tr {
+        background-color: $primary-colour-secondary;
+        color: white;
+        text-align: left;
+    }
+
+    th:first-of-type {
+        border-top-left-radius: 10px;
+    }
+
+    th:last-of-type {
+        border-top-right-radius: 10px;
+    }
+
+    th, td {
+        padding: 12px 15px;
+    }
+
+    tbody tr {
+        border-bottom: thin solid #dddddd;
+
+        .action-buttons {
+            text-align: right;
+            min-width: 100px;
+        }
+
+        &:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        &:last-of-type {
+            border-bottom: 2px solid $primary-colour-secondary;
+        }
+    }
+
+    i {
+        font-size: 1.5em;
+
+        &.bi-pencil {
+            color: rgb(83, 83, 83);
+            transition: 0.1s color;
+            cursor: pointer;
+
+            &:hover {
+                color: rgb(43, 43, 43);
+            }
+        }
+
+        &.bi-trash {
+            color: $error-colour;
+            transition: 0.1s color;
+            cursor: pointer;
+
+            &:hover {
+                color: $error-colour-hover
+            }
+        }
+    }
+}
+// Table styling end
+
 // Media queries start
 @media (max-width: 1024px) {
     .text-large {
@@ -459,6 +568,10 @@ label {
         .col-6 {
             grid-column: auto/span 12;
         }
+
+        .col-4 {
+            grid-column: auto/span 6;
+        }
     }
 
     .text-centre-md {
@@ -473,6 +586,13 @@ label {
 @media (max-width: 480px) {
     .form-centre {
         width: 100%;
+        min-width: initial;
+    }
+
+    .grid {
+        .col-4 {
+            grid-column: auto/span 12;
+        }
     }
 }
 // Media queries end

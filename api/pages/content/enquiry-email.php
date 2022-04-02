@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     try {
+        // Validate recaptcha score is not low, then send enquiry email
         $auth->validateRecaptcha($_POST['recaptchaToken']);
         $result = $pageManager->sendEnquiryEmail($_POST['name'], $_POST['email'], $_POST['message'], $_POST['company']);
     }

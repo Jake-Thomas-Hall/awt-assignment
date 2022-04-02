@@ -13,7 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $auth->validateRecaptcha($_POST['recaptchaToken']);
             $auth->login($_POST['email'], $_POST['password']);
 
-            jsonResponse("Login successful", ['token' => $auth->token]);
+            jsonResponse("Login successful", [
+                'token' => $auth->token,
+                'userId' => $auth->id
+            ]);
         } catch (Exception $ex) {
             jsonErrorResponse(403, $ex->getMessage());
         }
@@ -23,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Token checks done via GET - API endpoints are guarded by 'authGuard.php' being used inline, this endpoint can be used by frontend to check user access when loading 
-// a protected page.
+// a protected page, or to perform automatic logins via persisted token.
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (!isset($_GET['recaptchaToken'])) {
         jsonErrorResponse(400, 'Login failed, bad request.');
@@ -43,7 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             jsonErrorResponse(403, 'Login failed, please login again.');
         }
         else {
-            jsonResponse("Token authentication passed.", ['authStatus' => true]);
+            jsonResponse("Token authentication passed.", [
+                'authStatus' => true,
+                'userId' => $auth->id
+            ]);
         }
     }
     catch (Exception $exception) {

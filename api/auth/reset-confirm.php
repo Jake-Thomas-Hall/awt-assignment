@@ -10,6 +10,7 @@ $auth = new Auth();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['token']) && isset($_POST['newPassword']) && isset($_POST['newPasswordConfirm']) && isset($_POST['recaptchaToken'])) {
         try {
+            // Validate recaptcha token and then perform confirmation of reset token process
             $auth->validateRecaptcha($_POST['recaptchaToken']);
             $userManager->resetPasswordConfirm($_POST['token'], $_POST['newPassword'], $_POST['newPasswordConfirm']);
         }

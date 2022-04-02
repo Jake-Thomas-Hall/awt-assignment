@@ -56,6 +56,7 @@ export class ResetConfirmComponent implements OnInit {
         this.toastService.openToast({ content: result.message, style: 'success', timeout: 10000 });
         this.authService.removeToken();
         this.authService.setLoginStatus(false);
+        this.authService.userId = 0;
         this.router.navigate(['/admin/login']);
       });
     });

@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         jsonErrorResponse(500, $exception->getMessage());
     }
     
+    // Return result in formatted associated array.
     $formattedResults = [
         'contactTitle' => $result[array_search("contactTitle", array_column($result, 'pageSection'))],
         'contactCardFirst' => $result[array_search("contactCardFirst", array_column($result, 'pageSection'))],
@@ -21,5 +22,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         'contactCardThirdTitle' => $result[array_search("contactCardThirdTitle", array_column($result, 'pageSection'))]
     ];
     
-    jsonResponse('Home page content sections', $formattedResults);
+    jsonResponse('Contact page content sections', $formattedResults);
 }

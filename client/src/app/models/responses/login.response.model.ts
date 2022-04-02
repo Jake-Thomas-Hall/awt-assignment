@@ -1,6 +1,7 @@
 export interface LoginResponse {
     message: string;
     data: { 
-        authStatus: boolean 
+        authStatus: boolean,
+        userId: number
     };
 }

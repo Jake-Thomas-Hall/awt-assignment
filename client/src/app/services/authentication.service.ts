@@ -14,6 +14,7 @@ import { AppConfigService } from './app-config.service';
 })
 export class AuthenticationService {
   private authenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _userId: number = 0;
 
   constructor(private http: HttpClient) {
   }
@@ -22,16 +23,17 @@ export class AuthenticationService {
     return this.authenticated$.asObservable();
   }
 
+  authenticatedStatusSnapshot() {
+    return this.authenticated$.getValue();
+  }
+
   login(loginOptions: LoginRequest) {
     const body = new HttpParams()
       .set('email', loginOptions.email)
       .set('password', loginOptions.password)
       .set('recaptchaToken', loginOptions.recaptchaToken);
 
-    return this.http.post<LoginTokenResponse>(`${AppConfigService.settings.apiEndpoint}auth/login`, body, {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded')
-    });
+    return this.http.post<LoginTokenResponse>(`${AppConfigService.settings.apiEndpoint}auth/login`, body);
   }
 
   loginToken(recaptchaToken: string) {
@@ -80,5 +82,13 @@ export class AuthenticationService {
 
   setLoginStatus(status: boolean) {
     this.authenticated$.next(status);
+  }
+
+  get userId() {
+    return this._userId;
+  }
+
+  set userId(userId: number) {
+    this._userId = userId;
   }
 }

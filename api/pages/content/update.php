@@ -10,11 +10,13 @@ $auth = new Auth();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require __DIR__ . '/../../auth/authGuard.php';
 
+    // Do not allow past if recaptcha token not provided.
     if (!isset($_POST['recaptchaToken'])) {
         jsonErrorResponse(400, 'Recaptcha token not provided, cannot process request without token');
     }
     
     try {
+        // Validate that recaptcha score is not low, and then perform content update.
         $auth->validateRecaptcha($_POST['recaptchaToken']);
         $result = $pageManager->updatePageContent($_POST['id'], $_POST['content']);
     }

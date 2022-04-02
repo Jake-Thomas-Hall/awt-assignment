@@ -1,0 +1,35 @@
+<div class="container first">
+    <h2>Manage users</h2>
+    <div class="table-container">
+        <table class="mt-0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Created</th>
+                    <th>Last login</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.firstName}} {{user.lastName}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.created | date:'medium'}}</td>
+                    <td>{{user.lastLogin | date:'medium'}}</td>
+                    <td class="action-buttons">
+                        <div *ngIf="user.id !== 3">
+                            <i class="bi bi-pencil mr-1"></i> <i class="bi bi-trash"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-paginator">
+        <span>Page {{page}}</span>
+        <button class="button grey" *ngIf="page > 1" (click)="prev()">Prev</button>
+        <button class="button primary" *ngIf="users.length > 10" (click)="next()">Next</button>
+    </div>
+</div>
+

@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.toastService.openToast({ content: 'Login successful', style: 'success', timeout: 10000 });
         this.authService.setToken(result.data.token);
         this.authService.setLoginStatus(true);
+        this.authService.userId = result.data.userId;
         this.router.navigate(['/']);
       });
     });

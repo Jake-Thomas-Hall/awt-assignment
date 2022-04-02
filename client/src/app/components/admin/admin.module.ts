@@ -6,12 +6,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ResetComponent } from './reset/reset.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ResetConfirmComponent } from './reset-confirm/reset-confirm.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageAccountComponent } from './manage-account/manage-account.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     ResetComponent,
-    ResetConfirmComponent
+    ResetConfirmComponent,
+    ManageUsersComponent,
+    ManageAccountComponent
   ],
   imports: [
     CommonModule,

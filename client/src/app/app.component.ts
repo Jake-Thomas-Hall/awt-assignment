@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
           next: response => {
             // If login is successful display message and set auth status into auth service
             this.authService.setLoginStatus(response.data.authStatus);
+            this.authService.userId = response.data.userId;
             this.toastService.openToast({ content: 'Login succesful', style: 'success', timeout: 10000 });
           },
           error: (response: HttpErrorResponse) => {
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
             switch (response.status) {
               case 403:
                 this.authService.removeToken();
+                this.authService.userId = 0;
                 break;
               default:
                 break;
