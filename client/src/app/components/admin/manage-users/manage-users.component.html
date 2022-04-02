@@ -1,5 +1,6 @@
 <div class="container first">
     <h2>Manage users</h2>
+    <app-add-user (refresh)="refreshData()"></app-add-user>
     <div class="table-container">
         <table class="mt-0">
             <thead>
@@ -12,14 +13,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of users.slice(0, 10)">
                     <td>{{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.created | date:'medium'}}</td>
                     <td>{{user.lastLogin | date:'medium'}}</td>
                     <td class="action-buttons">
                         <div *ngIf="user.id !== 3">
-                            <i class="bi bi-pencil mr-1"></i> <i class="bi bi-trash"></i>
+                            <i class="bi bi-pencil mr-1" (click)="updateUser(user)"></i> <i class="bi bi-trash" (click)="deleteUser(user)"></i>
                         </div>
                     </td>
                 </tr>
@@ -31,5 +32,8 @@
         <button class="button grey" *ngIf="page > 1" (click)="prev()">Prev</button>
         <button class="button primary" *ngIf="users.length > 10" (click)="next()">Next</button>
     </div>
+    <div dynamicChildLoader></div>
 </div>
+
+
 

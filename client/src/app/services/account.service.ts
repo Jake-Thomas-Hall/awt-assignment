@@ -57,9 +57,10 @@ export class AccountService {
   }
 
   // Remove specified user (note that backend has a hardcoded check to prevent removal of default admin account, just in case)
-  removeuser(userId: number) {
+  removeuser(userId: number, recaptchaToken: string) {
     const body = new HttpParams()
-      .set('userId', userId);
+      .set('userId', userId)
+      .set('recaptchaToken', recaptchaToken);
 
     return this.http.post<MessageReponse>(`${AppConfigService.settings.apiEndpoint}admin/users/remove`, body)
   }

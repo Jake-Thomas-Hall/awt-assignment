@@ -1,0 +1,24 @@
+<div class="update-user-modal" *ngIf="show" @slideInOut>
+    <div class="modal-content">
+        <i (click)="close()" class="bi bi-x close-x"></i>
+        <h2>Update user details</h2>
+        <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+            <div class="input-container">
+                <label for="firstName">First name <span class="required-asterisk">*</span></label>
+                <input id="firstName" type="text" formControlName="firstName" placeholder="e.g. John">
+            </div>
+
+            <div class="input-container">
+                <label for="lastName">Last name <span class="required-asterisk">*</span></label>
+                <input id="lastName" type="text" formControlName="lastName" placeholder="e.g. Smith">
+            </div>
+
+            <div class="d-flex">
+                <button type="button" (click)="close()" class="button danger mr-1">Cancel <i class="bi bi-x-lg"></i></button>
+                <button type="submit" [disabled]="updateUserForm.invalid"
+                class="button primary"><span>Update <i
+                        class="bi bi-arrow-right-short"></i></span></button>
+            </div>
+        </form>
+    </div>
+</div>

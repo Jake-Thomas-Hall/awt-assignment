@@ -1,0 +1,45 @@
+<button class="button secondary large mb-1" (click)="toggle()">Add user <i class="bi bi-person-plus"></i></button>
+
+<div class="add-user-modal" *ngIf="show" @slideInOut>
+    <div class="modal-content">
+        <i (click)="close()" class="bi bi-x close-x"></i>
+        <h2>Add user</h2>
+        <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+            <div class="input-container">
+                <label for="firstName">First name <span class="required-asterisk">*</span></label>
+                <input id="firstName" type="text" formControlName="firstName" placeholder="e.g. John">
+            </div>
+
+            <div class="input-container">
+                <label for="lastName">Last name <span class="required-asterisk">*</span></label>
+                <input id="lastName" type="text" formControlName="lastName" placeholder="e.g. Smith">
+            </div>
+
+            <div class="input-container">
+                <label for="email">Email <span class="required-asterisk">*</span></label>
+                <input id="email" type="email" formControlName="email" placeholder="Smith">
+            </div>
+
+            <div class="input-container">
+                <label for="newPassword">Password <span class="required-asterisk">*</span></label>
+                <input id="newPassword" type="password" formControlName="newPassword">
+            </div>
+
+            <div class="input-container hint">
+                <label for="newPasswordConfirm">Confirm Password <span class="required-asterisk">*</span></label>
+                <input id="newPasswordConfirm" type="password" formControlName="newPasswordConfirm">
+            </div>
+            <div class="error-hint">
+                <small *ngIf="addUserForm.errors?.['fieldsDoNotMatch']" @slideInOut>Passwords do not
+                    match</small>
+            </div>
+
+            <div class="d-flex">
+                <button type="button" (click)="close()" class="button danger mr-1">Cancel <i class="bi bi-x-lg"></i></button>
+                <button type="submit" [disabled]="addUserForm.invalid"
+                class="button primary"><span>Add <i
+                        class="bi bi-arrow-right-short"></i></span></button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Validate recaptcha score is not low and perform update of user details.
         $auth->validateRecaptcha($_POST['recaptchaToken']);
         $userManager->updateUserDetails($_POST['userId'], $_POST['firstName'], $_POST['lastName']);
-        jsonResponse('Your user details have been successfully updated.');
+        jsonResponse('User details have been successfully updated.');
     }
     catch (Exception $exception) {
         jsonErrorResponse(500, $exception->getMessage());

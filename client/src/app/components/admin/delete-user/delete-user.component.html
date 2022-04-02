@@ -1,0 +1,11 @@
+<div class="delete-user-modal" *ngIf="show" @slideInOut>
+    <div class="modal-content position-relative">
+        <i (click)="close()" class="bi bi-x close-x"></i>
+        <p>Are you sure you want to delete {{user.email}}?</p>
+        
+            <button type="button" (click)="close()" class="button danger mr-1">Cancel <i
+                    class="bi bi-x-lg"></i></button>
+            <button type="submit" class="button primary" (click)="confirm()"><span>Yes <i
+                        class="bi bi-arrow-right-short"></i></span></button>
+    </div>
+</div>

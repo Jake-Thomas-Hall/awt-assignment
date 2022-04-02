@@ -12,6 +12,7 @@ import { SimpleTextEditorComponent } from './components/simple-text-editor/simpl
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContentEditableDirective } from './directives/content-editable.directive';
+import { LoadChildDirective } from './directives/load-child.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ContentEditableDirective } from './directives/content-editable.directiv
     AdvancedTextEditorComponent,
     SimpleTextEditorComponent,
     ClickOutsideDirective,
-    ContentEditableDirective
+    ContentEditableDirective,
+    LoadChildDirective
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { ContentEditableDirective } from './directives/content-editable.directiv
     ToastContainerComponent,
     ContentEditableDirective,
     AdvancedTextEditorComponent,
-    SimpleTextEditorComponent
+    SimpleTextEditorComponent,
+    LoadChildDirective
   ]
 })
 export class SharedModule { }
