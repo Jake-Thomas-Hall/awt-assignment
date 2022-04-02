@@ -1,6 +1,6 @@
 .hero-image {
     width: 100%;
-    background-image: url("/assets/static/images/7263826638_3969ad11c1_k.jpg");
+    background-image: url("/assets/static/images/6194015412_8487a871d4_b.jpg");
     background-size: cover;
     background-position: center;
     height: 45vh;
@@ -17,18 +17,3 @@
     background-color: rgba(0, 0, 0, 0.55);
 }
 
-iframe {
-    width: 100%;
-    min-height: 700px;
-    border-radius: 0.5rem;
-}
-
-input, textarea {
-    max-width: none;
-}
-
-@media (max-width: 768px) {
-    .hero-image {
-        height: 35vh;
-    }
-}

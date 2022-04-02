@@ -1,0 +1,50 @@
+<div class="hero-image">
+    <div class="container first">
+        <h1 class="text-large white hero-text position-relative text-centre">
+            <app-simple-text-editor [pageSection]="pageContent.data?.servicesTitle"></app-simple-text-editor>
+        </h1>
+    </div>
+</div>
+<main class="pt-1 pb-2">
+    <div class="container py-2">
+        <app-advanced-text-editor [pageSection]="pageContent.data?.servicesCardFirst"></app-advanced-text-editor>
+    </div>
+    <div class="background-alternate">
+        <div class="container py-2">
+            <div class="grid">
+                <div class="col-4 text-centre">
+                    <div class="service-card h-100">
+                        <div class="service-image first"></div>
+                        <app-advanced-text-editor [pageSection]="pageContent.data?.servicesCardSecond"></app-advanced-text-editor>
+                    </div>
+                </div>
+                <div class="col-4 text-centre">
+                    <div class="service-card h-100">
+                        <div class="service-image second"></div>
+                        <app-advanced-text-editor [pageSection]="pageContent.data?.servicesCardThird"></app-advanced-text-editor>
+                    </div>
+                </div>
+                <div class="col-4 text-centre">
+                    <div class="service-card h-100">
+                        <div class="service-image third"></div>
+                        <app-advanced-text-editor [pageSection]="pageContent.data?.servicesCardFourth"></app-advanced-text-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-2">
+        <div class="grid">
+            <div class="col-6 service-image forth h-100">
+            </div>
+            <div class="col-6 h-100">
+                <div class="">
+                    <app-advanced-text-editor [pageSection]="pageContent.data?.servicesCardFifth"></app-advanced-text-editor>
+                    <a class="button primary" [routerLink]="['/', 'contact']">Enquire</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>

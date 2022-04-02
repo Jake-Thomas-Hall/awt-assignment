@@ -1,0 +1,9 @@
+<div class="grid">
+    <div class="col-12 main-image">
+        <img [src]="'/assets/static/images/' + mainImage?.src" [alt]="mainImage?.alt">
+        <p><em>{{mainImage?.title}}</em></p>
+    </div>
+    <div class="col-3 selection-image" *ngFor="let image of galleryItems; index as i">
+        <img (click)="swapToMain(image, i)" [src]="'/assets/static/images/' + image.src" [alt]="image.alt">
+    </div>
+</div>

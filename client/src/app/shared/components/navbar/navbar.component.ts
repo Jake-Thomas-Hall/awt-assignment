@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { fadeInOut } from 'src/app/animations/fade-in-out.animation';
 import { slideInOut } from 'src/app/animations/slide-in-out.animation';
@@ -23,7 +24,8 @@ export class NavbarComponent implements OnInit {
     public navigationSerivce: NavigationService,
     public authService: AuthenticationService,
     private toastService: ToastService,
-    private recaptchaV3Service: ReCaptchaV3Service
+    private recaptchaV3Service: ReCaptchaV3Service,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,8 @@ export class NavbarComponent implements OnInit {
         this.toastService.openToast({ content: response.message, style: 'success'});
         this.authService.setLoginStatus(false);
         this.authService.removeToken();
+        this.authService.userId = 0;
+        this.router.navigate(['/']);
       });
     });
   }

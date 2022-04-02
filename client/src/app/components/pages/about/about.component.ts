@@ -11,7 +11,7 @@ export class AboutComponent implements OnInit {
   pageContent: AboutPageResponse = { message: undefined, data: undefined };
 
   constructor(
-    private pageContentService: PageContentService,
+    private pageContentService: PageContentService
   ) { }
 
   ngOnInit(): void {

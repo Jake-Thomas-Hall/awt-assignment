@@ -6,6 +6,7 @@ import { AboutPageResponse } from '../models/responses/about-page.response.model
 import { ContactPageResponse } from '../models/responses/contact-page.response.model';
 import { HomePageResponse } from '../models/responses/home-page.response.model';
 import { MessageReponse } from '../models/responses/message.response.model';
+import { ServicesPageResponse } from '../models/responses/services-page.response.model';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({
@@ -45,5 +46,9 @@ export class PageContentService {
 
   getAboutPageContent() {
     return this.httpClient.get<AboutPageResponse>(`${AppConfigService.settings.apiEndpoint}pages/about`);
+  }
+
+  getServicePageContent() {
+    return this.httpClient.get<ServicesPageResponse>(`${AppConfigService.settings.apiEndpoint}pages/services`);
   }
 }

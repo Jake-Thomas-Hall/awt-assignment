@@ -1,5 +1,5 @@
 <div class="update-user-modal" *ngIf="show" @slideInOut>
-    <div class="modal-content">
+    <div class="modal-content position-relative">
         <i (click)="close()" class="bi bi-x close-x"></i>
         <h2>Update user details</h2>
         <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
