@@ -9,7 +9,7 @@ Key Features:
 - [Swiper.js](https://swiperjs.com/) for home page carousel.
 - Logins are protected by [reCaptcha V3](https://developers.google.com/recaptcha/docs/v3), with a fully featured forgotten password/reset system.
 
-Live version of site can (for now) be found at **(will add link here in a few weeks once site has been assessed)**
+Live version of site can (for now) be found at https://ws326200-awt.remote.ac/
 
 ## Images
 
